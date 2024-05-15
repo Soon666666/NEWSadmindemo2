@@ -1,0 +1,63 @@
+{
+	"bsonType": "object",
+	"required": ["title", "content","cover"],
+	"properties": {
+		"_id": {
+			"description": "存储文档 ID（用户 ID），系统自动生成"
+		},
+		"category_id": {
+			"bsonType": "string",
+			"title": "分类",
+			"description": "分类 id",
+			"foreignKey": "category._id",
+			"enum": {
+				"collection": "category",
+				"field": "name as text, _id as value"
+			}
+		},
+		"title": {
+			"bsonType": "string",
+			"title": "标题",
+			"description": "文章标题",
+			"label": "标题",
+			"trim": "both"
+		},
+		"content": {
+			"bsonType": "string",
+			"title": "文章内容",
+			"description": "文章内容",
+			"label": "文章内容",
+			"maxLength": 2000
+		},
+		"excerpt": {
+			"bsonType": "string",
+			"title": "文章摘录",
+			"description": "文章摘录",
+			"label": "摘要"
+		},
+		"cover": {
+			"bsonType": "file",
+			"title": "封面图",
+			"description": "封面图地址",
+			"label": "封面图",
+			"fileMediaType": "image",
+			"fileExtName": "jpg,png"
+		},
+		"publish_date": {
+			"bsonType": "timestamp",
+			"title": "发表时间",
+			"description": "发表时间",
+			"defaultValue": {
+				"$env": "now"
+			}
+		},
+		"last_modify_date": {
+			"bsonType": "timestamp",
+			"title": "最后修改时间",
+			"description": "最后修改时间",
+			"defaultValue": {
+				"$env": "now"
+			}
+		}
+	}
+}
